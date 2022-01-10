@@ -1,0 +1,39 @@
+server:
+ port: 9000
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: clienteMarcos #este id debe ser único
+        uri: http://localhost:8050 #se coloca el uri base
+        predicates:
+        - Path=/clienteMarcos/solicitudes/** # se coloca los path que van enlazados al uri
+        filters:
+        - RewritePath=/clienteMarcos,/ #en el caso que varios quieran acceder al mismo path, entonces se tiene que colocar un filtro , en este caso clienteMarcos se colocaría en el Path, y ese clienteMarcos=/, por lo tanto el Path=/ /solicitudes/**
+      - id: clienteYisus
+        uri: https://429d-2800-200-f008-b1ad-45f1-6067-534a-e9f6.ngrok.io/
+        predicates:
+        - Path=/clienteYisus/solicitudes/**
+        filters:
+        - RewritePath=/clienteYisus,/
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*" #colocas todos los links origen que deben acceso, en este caso "*" signfica que todos tienen acceso
+            allowedHeaders:
+            - Content-Type
+            - Access-Control-Allow-Origin
+            - Access-Control-Allow-Headers
+            - Authorization
+            - X-Requested-With
+            - requestId
+            - Correlation-Id
+            allowedMethods:
+            - GET
+            - PUT
+            - PACH
+            - DELETE
+            - POST
+     
+            
+      

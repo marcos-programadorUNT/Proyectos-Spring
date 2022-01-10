@@ -1,0 +1,18 @@
+server:
+ port: 1234
+
+spring:
+ cloud:
+  config:
+   server:
+    git:
+     uri: https://github.com/marcos-programadorUNT/Proyectos-Spring.git
+     searchPaths: Configuraciones-datos
+     username: ${GIT_USER}
+     password: ${GIT_PASSWORD}
+
+ security:
+  user:
+   name: root
+   password: s3cr3t
+
