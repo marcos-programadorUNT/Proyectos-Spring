@@ -11,14 +11,14 @@ import javax.persistence.Table;
 @Table(name="clientemarcos")
 public class mclientes {
 
-	@Id private String dni;
+	@Id private Integer dni;
 	@Column private String nombres;
 	@Column private String correo;
 	
-	public String getDni() {
+	public Integer getDni() {
 		return dni;
 	}
-	public void setDni(String dni) {
+	public void setDni(Integer dni) {
 		this.dni = dni;
 	}
 	public String getNombres() {

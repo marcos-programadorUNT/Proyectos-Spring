@@ -21,14 +21,15 @@ public class msolicitudes {
 	@Column private String estado;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "dni", referencedColumnName = "dni")
-	private mclientes mclientes;
+	private mclientes dni;
 	
 	
-	public mclientes getMclientes() {
-		return mclientes;
+	
+	public mclientes getDni() {
+		return dni;
 	}
-	public void setMclientes(mclientes mclientes) {
-		this.mclientes = mclientes;
+	public void setDni(mclientes dni) {
+		this.dni = dni;
 	}
 	public Integer getNumero() {
 		return numero;
