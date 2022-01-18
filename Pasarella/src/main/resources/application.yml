@@ -11,11 +11,23 @@ spring:
         filters:
         - RewritePath=/clienteMarcos,/ #en el caso que varios quieran acceder al mismo path, entonces se tiene que colocar un filtro , en este caso clienteMarcos se colocaría en el Path, y ese clienteMarcos=/, por lo tanto el Path=/ /solicitudes/**
       - id: clienteYisus
-        uri: https://429d-2800-200-f008-b1ad-45f1-6067-534a-e9f6.ngrok.io/
+        uri: http://localhost:8050
         predicates:
         - Path=/clienteYisus/solicitudes/**
         filters:
         - RewritePath=/clienteYisus,/
+      - id: soloCliente1
+        uri: http://localhost:8050
+        predicates:
+        - Path=/soloCliente1/clientes/**
+        filters:
+        - RewritePath=/soloCliente1,/
+      - id: soloCliente2
+        uri: http://localhost:8050
+        predicates:
+        - Path=/soloCliente2/clientes/**
+        filters:
+        - RewritePath=/soloCliente2,/
       globalcors:
         cors-configurations:
           '[/**]':
