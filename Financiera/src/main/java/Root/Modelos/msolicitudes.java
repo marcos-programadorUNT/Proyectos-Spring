@@ -23,8 +23,7 @@ public class msolicitudes {
 	@JoinColumn(name = "dni", referencedColumnName = "dni")
 	private mclientes dni;
 	
-	
-	
+
 	public mclientes getDni() {
 		return dni;
 	}
