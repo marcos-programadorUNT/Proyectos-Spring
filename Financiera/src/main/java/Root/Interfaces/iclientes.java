@@ -21,5 +21,13 @@ public interface iclientes extends JpaRepository<mclientes, Integer>{
 			nativeQuery=true
 		  )
 	mclientes buscarCliente(@Param("numero") Integer numero);
+	
+	
+	@Modifying
+	@Query(
+			value="update clientemarcos set correo=:correo where dni=:numero",
+			nativeQuery=true
+		  )
+	void actualizarCorreo(@Param("numero") Integer numero,@Param("correo") String correo);
 
 }

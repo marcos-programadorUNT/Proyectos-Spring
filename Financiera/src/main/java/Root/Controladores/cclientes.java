@@ -15,12 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import Root.Interfaces.iclientes;
 import Root.Modelos.mclientes;
+import Root.Modelos.msolicitudes;
 
 @RestController
 @RequestMapping("clientes")
 public class cclientes {
 	
 	@Autowired private iclientes miobjeto;
+	
 	@GetMapping("/listar")
 	public List<mclientes> listar()
 	{
@@ -32,6 +34,19 @@ public class cclientes {
 	{
 	
 		return miobjeto.buscarCliente(numero);
+	}
+	
+	@PostMapping("/agregar")
+	public mclientes agregar(@RequestBody mclientes datos)
+	{
+		miobjeto.save(datos);
+		return datos;
+	}
+	
+	@PutMapping("/actualizar/{numero}")
+	public mclientes aprobar(@PathVariable("numero") Integer numero, @RequestBody mclientes datos)
+	{	miobjeto.actualizarCorreo(numero,datos.getCorreo());
+		return miobjeto.findById(numero).get();
 	}
 
 }

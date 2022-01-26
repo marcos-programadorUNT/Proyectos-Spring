@@ -9,6 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import Root.Modelos.*;
 
 @Entity
@@ -23,6 +27,10 @@ public class msolicitudes {
 	@JoinColumn(name = "dni", referencedColumnName = "dni")
 	private mclientes dni;
 	
+	@JsonCreator
+	public msolicitudes (@JsonProperty("dni") Integer dni ) {
+	    this.dni.setDni(dni);
+	}
 
 	public mclientes getDni() {
 		return dni;
