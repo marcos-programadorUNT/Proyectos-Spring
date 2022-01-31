@@ -10,59 +10,72 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import Root.Modelos.*;
 
 @Entity
-@Table(name="solicitudmarcos")
+@Table(name="solicitud")
 public class msolicitudes {
+	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer numero;
 	@Column private Integer cuotas;
 	@Column private Double monto;
 	@Column private String estado;
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "dni", referencedColumnName = "dni")
-	private mclientes dni;
 	
-	@JsonCreator
-	public msolicitudes (@JsonProperty("dni") Integer dni ) {
-	    this.dni.setDni(dni);
-	}
+	@ManyToOne
+	@JoinColumn(name = "dni", referencedColumnName = "dni")
+	private mclientes mclientes;
 
-	public mclientes getDni() {
-		return dni;
-	}
-	public void setDni(mclientes dni) {
-		this.dni = dni;
-	}
 	public Integer getNumero() {
 		return numero;
 	}
+
 	public void setNumero(Integer numero) {
 		this.numero = numero;
 	}
+
 	public Integer getCuotas() {
 		return cuotas;
 	}
+
 	public void setCuotas(Integer cuotas) {
 		this.cuotas = cuotas;
 	}
+
 	public Double getMonto() {
 		return monto;
 	}
+
 	public void setMonto(Double monto) {
 		this.monto = monto;
 	}
+
 	public String getEstado() {
 		return estado;
 	}
+
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+
+	@JsonBackReference
+	public mclientes getMclientes() {
+		return mclientes;
+	}
+
+	public void setMclientes(mclientes mclientes) {
+		this.mclientes = mclientes;
+	}
+
 	
+	
+	
+	
+
 	
 	
 	

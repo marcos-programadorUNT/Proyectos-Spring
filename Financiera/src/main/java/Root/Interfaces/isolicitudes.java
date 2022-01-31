@@ -17,22 +17,29 @@ public interface isolicitudes extends JpaRepository<msolicitudes, Integer>{
 
 	@Modifying
 	@Query(
-			value="update solicitudmarcos set estado='A' where numero=:numero",
+			value="update solicitud set estado='A' where numero=:numero",
 			nativeQuery=true
 		  )
 	void aprobarSolicitud(@Param("numero") Integer numero);
 	
 	@Modifying
 	@Query(
-			value="update solicitudmarcos set estado='D' where numero=:numero",
+			value="update solicitud set estado='D' where numero=:numero",
 			nativeQuery=true
 		  )
 	void desaprobarSolicitud(@Param("numero") Integer numero);
 	
 	@Query(
-			value="select * from solicitudmarcos where dni=:numero limit 1",
+			value="select * from solicitud where dni=:numero limit 1",
 			nativeQuery=true
 		  )
 	msolicitudes buscarSolicitud(@Param("numero") Integer numero);
+	
+	@Modifying
+	@Query(
+			value="insert into solicitud (cuotas, estado, monto, dni) values (:cuotas,:estado,:monto,:dni)",
+			nativeQuery=true
+		  )
+	void insertarSolicitud(@Param("estado") String estado, @Param("cuotas") int cuotas, @Param("monto") double monto, @Param("dni") int dni);
 	
 }

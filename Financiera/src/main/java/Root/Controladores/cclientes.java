@@ -48,5 +48,11 @@ public class cclientes {
 	{	miobjeto.actualizarCorreo(numero,datos.getCorreo());
 		return miobjeto.findById(numero).get();
 	}
+	
+	@GetMapping("/listarSolicitudes/{dni}")
+	public List<msolicitudes> listar(@PathVariable("dni") Integer dni)
+	{
+		return miobjeto.getById(dni).getListadoSolicitudes();
+	}
 
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import Root.Interfaces.isolicitudes;
@@ -22,13 +23,31 @@ public class csolicitudes {
 
 	@Autowired private isolicitudes miobjeto;
 	
+
+	@PostMapping("/agregar")
+	public String agregar
+	(
+			@RequestParam("estado") String estado,
+			@RequestParam("cuotas") int cuotas,
+			@RequestParam("monto") double monto,
+			@RequestParam("dni") int dni
+            
+	)
+	{
+		miobjeto.insertarSolicitud(estado, cuotas, monto, dni);
+		return "Guardado";
+	}
 	
+	
+	/*
 	@PostMapping("/agregar")
 	public msolicitudes agregar(@RequestBody msolicitudes datos)
 	{
 		miobjeto.save(datos);
 		return datos;
 	}
+	*/
+	
 	
 	@GetMapping("/listar")
 	public List<msolicitudes> listar()
